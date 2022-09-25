@@ -1,0 +1,57 @@
+<style>
+    .account:hover .form{
+		display: block;
+	}
+</style>
+
+<section class="px-10 border shadow-md">
+    <nav class="flex justify-between items-center h-[90px]">
+        <div>
+            <a href="" class="text-[#131176] font-extrabold text-xl">
+                SERHANT.
+            </a>
+        </div>
+
+       <div class="flex items-center gap-5">
+        <ul class="text-[#131176] font-extrabold text-xl flex gap-5">
+            <li>
+                <a href="">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+
+        <div class="relative account">
+            <div class="text-3xl cursor-pointer text-[#131176]">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <form action="/officials" method="POST" class="form border shadow-md p-4 absolute right-0 bg-white z-10 hidden">
+                <div class="text-center text-blue-600">
+                    <small>Welcome Back</small>
+                </div>
+                <div class="text-center text-3xl py-4 text-gray-600">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="py-2">
+                    <input type="email" name="email" id="" placeholder="Email" class="border outline-none p-2" value="khall@gmail.com">
+                </div>
+
+                <div class="py-2">
+                    <input type="password" name="pass_code" id="" placeholder="password" class="border outline-none p-2" value="admin123">
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Login" class="px-4 py-2 bg-blue-600 text-white">
+                </div>
+            </form>
+        </div>
+       </div>
+    </nav>
+</section>

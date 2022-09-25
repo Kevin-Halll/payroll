@@ -1,0 +1,88 @@
+<section class="flex justify-center w-full">
+    <section>
+        <h1 class="text-3xl font-bold text-blue-900 text-center p-5 my-5 border-b-2 border-b-[#131176] uppercase">
+            Employees Table
+        </h1>
+
+        <div class="fade">
+            <% if (messages.success){ %>
+                <p class="flash w-fit shadow-sm text-2xl text-green-500"><%- messages.success %> </p>
+            <% } %> 
+        </div>
+
+        <div class="flex justify-end mb-3">
+            <a href="/employee-add/employee" class="bg-[#131176] text-white p-3 block">
+                Add Employee
+            </a>
+        </div>
+
+       
+        <table class="border p-3 text-center">
+            <thead class="bg-cyan-600 text-white">
+              <th class="px-5 py-3 border">Name</th>
+              <th class="px-5 py-3 border">Email</th>
+              <th class="px-5 py-3 border">Phone #</th>
+              <th class="px-5 py-3 border">TRN</th>
+              <th class="px-5 py-3 border">NIS</th>
+              <th class="px-5 py-3 border">Department</th>
+              <th class="px-5 py-3 border">Role</th>
+              <th class="px-5 py-3 border">Actions</th>
+            </thead>
+      
+            <tbody>
+              <% employees.reverse().forEach(emp => { %>
+              <tr class="hover:shadow-md hover:shadow-cyan-400">
+                <td class="px-5 py-3 border"><%= emp.fname %> <%=emp.lname %> </td>
+                <td class="px-5 py-3 border"><%=emp.email %> </td>
+                <td class="px-5 py-3 border"><%=emp.phone_nm %></td>
+                <td class="px-5 py-3 border"><%=emp.TRN %> </td>
+                <td class="px-5 py-3 border"><%= emp.NIS %> </td>
+                <td class="px-5 py-3 border"><%=emp.department %> </td>
+                <td class="px-5 py-3 border"><%=emp.roles %> </td>
+                <td class="px-5 py-3 border flex items-center gap-5">
+
+                    <div class="hover:text-cyan-500 text-sm" title="View Payroll">
+                        <a href="/employee-payroll/<%= emp.empID %> ">
+                          <i class="fa-solid fa-file-invoice-dollar"></i> Payroll
+                        </a>
+                      </div>
+                    <div class="hover:text-cyan-500 text-sm" title="Edit Employee">
+                        <a href="/edit-employee/<%= emp.empID %> ">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </a>
+                      </div>
+        
+                    <div class="hover:text-orange-500 text-sm" title="Delete Employee">
+                      <a href="/delete-employee/delete/<%= emp.empID %> ">
+                        <i class="fa-solid fa-trash"></i> Delete
+                      </a>
+                    </div>
+
+                </td>
+                
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+
+          <div class="p-5 bg-[#EEE] font-thin text-center my-10">
+            <p>Copyright @ Serhant Construction Ltd. 2022</p>
+          </div>
+    </section>
+</section>
+
+<style>
+    .flash{
+        animation: fadeOut ease 10s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+     }
+    }
+</style>

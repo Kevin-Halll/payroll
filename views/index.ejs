@@ -1,0 +1,95 @@
+<section class="bg-[#131176] h-[90vh]">
+    <h1 class="font-extrabold text-5xl p-10 text-white">S.</h1>
+
+    <section class="flex flex-col items-center">
+        <div class="fade">
+            <% if (messages.error){ %>
+                <p class="flash w-fit shadow-sm text-2xl text-red-500 z-10"><%- messages.error %> </p>
+            <% } %> 
+        </div>
+        <div class="text-center">
+            <h1 class="text-white text-5xl font-thin p-2">
+                <%=new Date(Date.now()).toDateString() %> 
+            </h1>
+            <h1 id="time" class="text-white text-5xl font-thin p-2 text-center">
+                Local Time 
+            </h1>
+        </div>
+        <div>
+            <form action="/update-log" method="post" class="bg-white p-5 border shadow-md w-[400px] mt-5">
+                <p class="text-center py-2">Employee Work Log</p>
+    
+               <div>
+                <select name="log_option" id="log-option" class="border outline-none w-full my-2 p-2">
+                    <option value="time-in">Time In</option>
+                    <option value="time-out">Time Out</option>
+                </select>
+               </div>
+    
+               <select name="employee_id" id="names" class="border outline-none w-full my-2 p-2" required>
+                <option value="" hidden>---Select Your Name---</option>
+                <% logs.forEach(log => { %>
+                    <option value="<%=log.id %>"><%= log.fname %> <%= log.lname %>  </option>
+                <% }) %>  
+               </select>
+               <input type="text" name="start_time" id="time-in" hidden>
+               <input type="text" name="end_time" id="time-out" hidden>
+               <div>
+                <button type="submit" class="py-2 px-3 bg-[#131176] text-white">Enter Log</button>
+               </div>
+    
+            </form>
+
+            <div class="fade">
+                <% if (messages.success){ %>
+                    <p class="flash w-fit shadow-sm text-2xl text-green-500"><%- messages.success %> </p>
+                <% } %> 
+            </div>
+            <div class="fade">
+                <% if (messages.error){ %>
+                    <p class="flash w-fit shadow-sm text-2xl text-red-500"><%- messages.error %> </p>
+                <% } %> 
+            </div>
+            
+        </div>
+    </section>
+</section>
+
+<style>
+    .flash{
+        animation: fadeOut ease 6s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+     }
+    }
+</style>
+
+<script>
+    let time = document.querySelector('#time');
+    let time_in = document.querySelector('#time-in');
+    let time_out = document.querySelector('#time-out');
+    let log_opt = document.querySelector('#log-option');
+
+    
+
+    setInterval(() => {
+        var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, 19);
+
+        time.innerText = new Date(Date.now()).toLocaleTimeString();
+        time_in.value = localISOTime;
+        time_out.value = localISOTime;
+    }, 1000);
+
+    // log_opt.onchange = () => {
+    //         time_in.classList.toggle('hidden')
+    //         time_out.classList.toggle('hidden')
+    // }
+</script>

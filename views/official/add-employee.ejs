@@ -1,0 +1,71 @@
+<section class="bg-[#eee] h-full pt-4">
+    <h1 class="text-3xl font-bold text-blue-900 text-center p-5 my-5 border-b-2 border-b-[#131176] uppercase w-[70%] m-auto">
+        Employee Info Form
+    </h1>
+    <div class="w-[70%] m-auto bg-white p-5 grid grid-cols-[2fr_4fr] border shadow-md">
+        <div class="flex justify-center pt-20">
+            <i class="fa-solid fa-circle-user text-[8rem] text-[#ccc]"></i>
+        </div>
+
+        <div>
+            <form action="/employee-submitted/submit" method="POST">
+
+                <div class="grid grid-cols-2 gap-5 py-5">
+                    <div class="text-xl">
+                        <label for="fname" class="text-cyan-600 font-bold">First Name</label>
+                        <input type="text" name="fname" id="fname" class="w-full p-1 border outline-none">
+                    </div>
+                    <div class="text-xl">
+                        <label for="lname" class="text-cyan-600 font-bold">Last Name</label>
+                        <input type="text" name="lname" id="lname" class="w-full p-1 border outline-none">
+                    </div>
+                    <div class="text-xl col-span-2">
+                        <label for="email" class="text-cyan-600 font-bold">Email</label>
+                        <input type="text" name="email" id="email" class="w-full p-1 border outline-none">
+                    </div>
+                    <div class="text-xl col-span-2">
+                        <label for="phone_nm" class="text-cyan-600 font-bold">Phone No.</label>
+                        <input type="tel" name="phone_nm" id="phone_nm" class="w-full p-1 border outline-none">
+                    </div>
+                    <div class="text-xl">
+                        <label for="TRN" class="text-cyan-600 font-bold">Tax Registration No.</label>
+                        <input type="number" name="trn" id="TRN" class="w-full p-1 border outline-none" max="999999999">
+                    </div>
+                    <div class="text-xl">
+                        <label for="NIS" class="text-cyan-600 font-bold">National Insurance No.</label>
+                        <input type="number" name="nis" id="NIS" class="w-full p-1 border outline-none" pattern="^[a-zA-Z0-9_]*$" max="999999999">
+                    </div>
+                    <div class="text-xl">
+                        <label for="department_id" class="text-cyan-600 font-bold">Departmant</label>
+                        <select name="department_id" id="department" class="capitalize block border w-full p-1 outline-none">
+                            <option value="" hidden>---Select Department---</option>
+                            <% deps.forEach(dep => { %> 
+                            <option value="<%=dep.id %>"><%=dep.department %> </option>
+                            <% }) %> 
+                        </select>
+                    </div>
+                    <div class="text-xl">
+                        <label for="roles" class="text-cyan-600 font-bold">Role</label>
+                        <select name="role_id" id="role" class="capitalize block border w-full p-1 outline-none">
+                            <option value="" hidden>---Select Role---</option>
+                            <% roles.forEach(role => { %> 
+                            <option value="<%=role.id %> "><%=role.roles %> </option>
+                            <% }) %> 
+                        </select>
+                    </div>
+
+                    <div class="text-xl">
+                        <label for="pass_code" class="text-cyan-600 font-bold">Create Employee Pass Code</label>
+                        <input type="password" name="pass_code" id="pass_code" class="w-full p-1 border outline-none">
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-[#131176] text-white p-3 my-3">
+                        Add Employee
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
